@@ -11,7 +11,6 @@ def create_provenance_graph(path = "wsp-audit.log"):
     data = []
     with open(path) as f:
         for line in f:
-          print(line)
           data.append(json.loads(line))
 
 
@@ -88,8 +87,6 @@ def create_provenance_graph(path = "wsp-audit.log"):
             SendersByI.append("")
             ReceiversByI.append("")
 
-    print("senders",SendersByI)
-    print("receivers",ReceiversByI)
 
     for k in MapIP:
         G.add_node("IP" + k, label = k + "=" +MapIP[k])
@@ -109,8 +106,6 @@ def create_provenance_graph(path = "wsp-audit.log"):
         ips = ""
 
         if(NiA["object_type"] == "packet"):
-            #print("Packet : ",    Nodes[i])
-            #print("Sender : ",NiA["sender"])
             ips = SendersByI[i] + " ->" + ReceiversByI[i]
             pass
             
@@ -125,7 +120,8 @@ def create_provenance_graph(path = "wsp-audit.log"):
             pass
 
         if(NiA["object_type"] == "socket"):
-            print("Socket : ",    Nodes[i])
+            #print("Socket : ",    Nodes[i])
+            pass
 
         
         if(NiA["object_type"] == "argv"):
