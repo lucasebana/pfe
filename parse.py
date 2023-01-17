@@ -89,6 +89,7 @@ def create_provenance_graph(path = "wsp-audit.log"):
 
 
     for k in MapIP:
+        #Ajout des noeuds representant les differentes IP au graphe
         G.add_node("IP" + k, label = k + "=" +MapIP[k])
 
     for i in range(len(Nodes)):
@@ -132,7 +133,7 @@ def create_provenance_graph(path = "wsp-audit.log"):
         else:
             labeli = NiA["object_type"] + "{" + str(IndexById[i])+  "}" + pid + value + ips
 
-
+        #Ajout de noeuds au graphe
         G.add_node(N[i]["id"],
         label=labeli,
         group=node_types.index(NiA["object_type"]),
@@ -155,10 +156,11 @@ def create_provenance_graph(path = "wsp-audit.log"):
 
 
 
-
+    #Ajout d'arêtes au graphe
     for i in range(len(Edges)):
         G.add_edge(Edges[i]["from"],Edges[i]["to"],annotations=Edges[i]["annotations"],label=Edges[i]["annotations"]["relation_type"])
     return G
 
 #create_provenance_graph("audit/fork.audit.log")
-g = create_provenance_graph("attaque/audit.log")
+#g = create_provenance_graph("attaque/audit.log")
+g = create_provenance_graph("audit/audit.log")
